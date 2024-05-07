@@ -9,7 +9,7 @@ public class Bullets {
     private int width;
     private int height;
     private Image flameImage;
-    private boolean bullet = false;
+    private boolean bullet = true;
 
 
 
@@ -42,7 +42,7 @@ public class Bullets {
 
     public void drawBullet(Graphics2D g) {
             if (bullet){
-                g.setColor(Color.white);
+                g.setColor(Color.WHITE);
                 g.fillOval(this.x,this.y,width,height);
             } else {
                 g.drawImage(flameImage,this.x,this.y,width,height,null);

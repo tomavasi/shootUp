@@ -28,6 +28,7 @@ public class GamePanel extends JPanel {
     private CopyOnWriteArrayList<Heart> hearts;
     private final KeyListeners keyListener = new KeyListeners();
     private ApplePool applePool;
+    private Image backgroundImage;
 
     public ScoreBoard getScoreBoard() {
         return scoreBoard;
@@ -104,6 +105,7 @@ public class GamePanel extends JPanel {
         explosions = new ArrayList<>();
         bullets = new ArrayList<>();
         hearts = new CopyOnWriteArrayList<>();
+        backgroundImage = new ImageIcon(Objects.requireNonNull(getClass().getResource("background.jpg"))).getImage();
         shooter = new Shooter(screenWidth, screenHeight, keyListener, 6, 3);
         shooter.setSize(70, 70);
         shooter.setLocationY(screenHeight - shooter.getHeight());
@@ -164,7 +166,7 @@ public class GamePanel extends JPanel {
     private void shootingTask() {
         if (keyListener.isShoot() || keyListener.isShootBig()) {
             if (shotTime == 0 && keyListener.isShoot()) {
-                bullet = new Bullets(shooter.getLocationX(), shooter.getLocationY(), 10, 10, shooter.getWidth(), shooter.getHeight());
+                bullet = new Bullets(shooter.getLocationX(), shooter.getLocationY(), 15, 15, shooter.getWidth(), shooter.getHeight());
                 bullets.add(bullet);
             }
             if (shotTime == 0 && keyListener.isShootBig()) {
@@ -401,7 +403,6 @@ public class GamePanel extends JPanel {
         g.drawString(restart, restartXCord, (yCord + restartFm.getAscent() + 50));
     }
 
-
     @Override
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -412,8 +413,7 @@ public class GamePanel extends JPanel {
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             gameState(g2d);
         } else {
-            g2d.setPaint(new Color(200, 200, 200));
-            g2d.fillRect(0, 0, getWidth(), getHeight());
+            g2d.drawImage(backgroundImage, 0,0,screenWidth,screenHeight,null);
             g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
             shooter.drawImage(g2d, shooter.getWidth(), shooter.getHeight());
             for (int i = 0; i < apples.size(); i++) {
