@@ -40,7 +40,7 @@ git clone https://github.com/tomavasi/shootUp.git
 Navigate to the directory
 
 ```bash
-cd applecatcher
+cd shootUp
 ```
 
 Run the .jar file
