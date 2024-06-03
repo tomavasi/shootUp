@@ -18,16 +18,11 @@ public class GamePanel extends JPanel {
     private ArrayList<Bomb> bombs;
     private int score = 0;
     private Shooter shooter;
-    private int shooterSpeed;
-    private int appleSpeed;
-    private int bulletSpeed;
-    private boolean pauseGame;
     private Bullets bullet;
     private ArrayList<Bullets> bullets;
     private ArrayList<Explosion> explosions;
     private CopyOnWriteArrayList<Heart> hearts;
     private final KeyListeners keyListener = new KeyListeners();
-    private ApplePool applePool;
     private Image backgroundImage;
 
     public ScoreBoard getScoreBoard() {
@@ -164,13 +159,9 @@ public class GamePanel extends JPanel {
     }
 
     private void shootingTask() {
-        if (keyListener.isShoot() || keyListener.isShootBig()) {
-            if (shotTime == 0 && keyListener.isShoot()) {
+        if (keyListener.isShoot()) {
+            if (shotTime == 0) {
                 bullet = new Bullets(shooter.getLocationX(), shooter.getLocationY(), 15, 15, shooter.getWidth(), shooter.getHeight());
-                bullets.add(bullet);
-            }
-            if (shotTime == 0 && keyListener.isShootBig()) {
-                bullet = new Bullets(shooter.getLocationX(), shooter.getLocationY(), 20, 20, shooter.getWidth(), shooter.getHeight());
                 bullets.add(bullet);
             }
             shotTime++;

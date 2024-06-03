@@ -1,4 +1,5 @@
 import javax.sound.sampled.*;
+import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.IOException;
 import java.util.Objects;
@@ -14,7 +15,7 @@ public class Sounds {
 
     public void loadShootingApple(){
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getResourceAsStream("shootingApples2.wav")));
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(Objects.requireNonNull(getClass().getResourceAsStream("shootingApples2.wav"))));
             shootingApple = AudioSystem.getClip();
             shootingApple.open(audioInputStream);
         } catch (LineUnavailableException |
@@ -33,7 +34,7 @@ public class Sounds {
 
     public void loadShootingBomb(){
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getResourceAsStream("shootingBomb.wav")));
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(Objects.requireNonNull(getClass().getResourceAsStream("shootingBomb.wav"))));
             shootingBomb = AudioSystem.getClip();
             shootingBomb.open(audioInputStream);
         } catch (LineUnavailableException |
@@ -51,7 +52,7 @@ public class Sounds {
     }
     public void loadShootingHeart(){
         try {
-            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(Objects.requireNonNull(getClass().getResourceAsStream("shootingHeart.wav")));
+            AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new BufferedInputStream(Objects.requireNonNull(getClass().getResourceAsStream("shootingHeart.wav"))));
             shootingHeart = AudioSystem.getClip();
             shootingHeart.open(audioInputStream);
         } catch (LineUnavailableException |
